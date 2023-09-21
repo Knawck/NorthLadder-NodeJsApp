@@ -1,0 +1,10 @@
+replicaCount: 2
+image:
+  repository: 20-alpine3.17:latest
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  port: 80
+ingress:
+  enabled: false
+  host: your-domain.com

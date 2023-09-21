@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app-deployment
+spec:
+  replicas: 2  # Adjust the number of replicas as needed. I've taken 2 for example.
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+        - name: nodejs-app
+          image: 20-alpine3.17:latest  
+          ports:
+            - containerPort: 3000  
+          env:
+            - name: MONGODB_URI
+              value: "mongodb://mongodb-hostname:27017/your-database"  # Replace with MongoDB connection details
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-app-service
+spec:
+  selector:
+    app: nodejs-app
+  ports:
+    - protocol: TCP
+      port: 80  # Replace with the desired external port
+      targetPort: 3000  
+  type: LoadBalancer  #[Optional But Will Use For Testing And Production Loads] Use LoadBalancer for external access, or ClusterIP for internal-only access

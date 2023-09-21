@@ -1,0 +1,34 @@
+version: '3'
+services:
+  nodejs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Mapping app's port to the host machine
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/new_DB
+      - REDIS_HOST=redis
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017" # Mapping MongoDB's port to the host machine
+    environment: #Creating an env file and storing the secrets is a must. I'm leaving this as is just for demonstration's sake
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    volumes:
+      - mongodb-data:/data/db
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379" # Mapping Redis's port to the host machine
+
+volumes: #Not required here but good practice
+  mongodb-data: 
