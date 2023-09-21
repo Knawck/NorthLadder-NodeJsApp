@@ -6,5 +6,5 @@ COPY . .
 ENV MONGODB_URI=mongodb://mongodb-hostname:27017/new_DB
 ENV REDIS_HOST=redis-host
 ENV REDIS_PORT=6379
-EXPOSE 4000
+EXPOSE 3000
 CMD ["node", "app.js"]

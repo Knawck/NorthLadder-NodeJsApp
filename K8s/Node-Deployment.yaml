@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: nodejs-app
-          image: 20-alpine3.17:latest  
+          image: Knawck/nodejs-app:v1  
           ports:
             - containerPort: 3000  
           env:
             - name: MONGODB_URI
-              value: "mongodb://mongodb-hostname:27017/your-database"  # Replace with MongoDB connection details
+              value: "mongodb://mongodb-hostname:27017/new_DB"  # Replace with MongoDB connection details
 ---
 apiVersion: v1
 kind: Service
