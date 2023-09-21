@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejs-app
-          image: Knawck/nodejs-app:v1  
+          image: knawck/nodejs-app:v1  
           ports:
             - containerPort: 3000  
           env:
